@@ -1,0 +1,9 @@
+[submodule "service_report"]
+	path = service_report
+	url = git@github.com:silvablack/service_report.git
+[submodule "service_company"]
+	path = service_company
+	url = git@github.com:silvablack/service_company.git
+[submodule "service_complains"]
+	path = service_complains
+	url = git@github.com:silvablack/service_complains.git

@@ -1,0 +1,55 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Report API",
+		"_postman_id": "465c6757-0b7c-a4cc-e87e-682c0596caac",
+		"description": "# Introduction\nThis API retreive informations on complaints by company in determined city",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Complaints by Company in determined city",
+			"request": {
+				"url": {
+					"raw": "18.223.203.222:5020/report?city=São Luís&uf=MA&company=5b7b7259ff523c0021c74c63",
+					"host": [
+						"18",
+						"223",
+						"203",
+						"222"
+					],
+					"port": "5020",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "São Luís",
+							"equals": true,
+							"description": "param: City origin of complains"
+						},
+						{
+							"key": "uf",
+							"value": "MA",
+							"equals": true,
+							"description": "param: UF state origin of complains | default: uppercase"
+						},
+						{
+							"key": "company",
+							"value": "5b7b7259ff523c0021c74c63",
+							"equals": true,
+							"description": "param: Company ID of company search"
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

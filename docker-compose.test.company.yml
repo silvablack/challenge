@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+    company-service-test:
+        build:
+            context: ./service_company
+            dockerfile: Dockerfile-test
+        command: node_modules/.bin/nodemon --exec npm run test
+        environment:
+            NODE_ENV: test
+            URL_SERVICE_COMPANY: ${URL_SERVICE_COMPANY}
+            PORT_SERVICE_COMPANY: ${PORT_SERVICE_COMPANY}
+            URI_DATA_COMPANY: ${URI_DATA_COMPANY}
+            URI_CACHE_COMPANY: ${URI_CACHE_COMPANY}
+            PASSWORD_CACHE_COMPANY: ${PASSWORD_CACHE_COMPANY}
+        volumes:
+            - ./service_company:/home/app
+        links:
+            - company-cache-test
+            - company-data-test
+        depends_on:
+            - company-data-test
+
+    company-data-test:
+        image: mongo
+        restart: always
+        command: mongod --port 27017
+        volumes:
+            - ./db/company/test:/data/db
+        logging:
+            driver: "none"
+
+    company-cache-test:
+        image: "redis:alpine"
+        command: redis-server --requirepass 1234
+        logging:
+            driver: "none"

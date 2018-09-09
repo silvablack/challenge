@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+    complains-service-test:
+        build:
+            context: ./service_complains
+            dockerfile: Dockerfile-test
+        command: node_modules/.bin/nodemon --exec npm run test
+        environment:
+            NODE_ENV: test
+            URL_SERVICE_COMPLAINS: ${URL_SERVICE_COMPLAINS}
+            PORT_SERVICE_COMPLAINS: ${PORT_SERVICE_COMPLAINS}
+            URI_DATA_COMPLAINS: ${URI_DATA_COMPLAINS}
+            URI_CACHE_COMPLAINS: ${URI_CACHE_COMPLAINS}
+            PASSWORD_CACHE_COMPLAINS: ${PASSWORD_CACHE_COMPLAINS}
+        volumes:
+            - ./service_complains:/home/app
+        links:
+            - complains-cache-test
+            - complains-data-test
+        depends_on:
+            - complains-data-test
+
+    complains-data-test:
+        image: mongo
+        restart: always
+        command: mongod --port 27017
+        volumes:
+            - ./db/complains/test:/data/db
+        ports:
+            - "27017:27017"
+        logging:
+            driver: "none"
+
+    complains-cache-test:
+        image: "redis:alpine"
+        command: redis-server --requirepass 1234
+        logging:
+            driver: "none"

@@ -1,0 +1,79 @@
+version: '3'
+
+services:
+    complains_service:
+        build:
+            context: ./service_complains
+            dockerfile: Dockerfile
+        environment:
+            NODE_ENV: production
+            URL_SERVICE_COMPLAINS: ${URL_SERVICE_COMPLAINS}
+            PORT_SERVICE_COMPLAINS: ${PORT_SERVICE_COMPLAINS}
+            URI_DATA_COMPLAINS: ${URI_DATA_COMPLAINS}
+            URI_CACHE_COMPLAINS: ${URI_CACHE_COMPLAINS}
+            PASSWORD_CACHE_COMPLAINS: ${PASSWORD_CACHE_COMPLAINS}
+        env_file: ./.env
+        ports:
+            - "${PORT_SERVICE_COMPLAINS}:${PORT_SERVICE_COMPLAINS}"
+        volumes:
+            - ./service_complains:/home/app
+            - /home/app/node_modules
+
+    company_service:
+        build:
+            context: ./service_company
+            dockerfile: Dockerfile
+        environment:
+            NODE_ENV: production
+            URL_SERVICE_COMPANY: ${URL_SERVICE_COMPANY}
+            PORT_SERVICE_COMPANY: ${PORT_SERVICE_COMPANY}
+            URI_DATA_COMPANY: ${URI_DATA_COMPANY}
+            URI_CACHE_COMPANY: ${URI_CACHE_COMPANY}
+            PASSWORD_CACHE_COMPANY: ${PASSWORD_CACHE_COMPANY}
+        env_file: ./.env
+        ports:
+            - "${PORT_SERVICE_COMPANY}:${PORT_SERVICE_COMPANY}"
+        volumes:
+            - ./service_company:/home/app
+            - /home/app/node_modules
+    
+    report_service:
+        build:
+            context: ./service_report
+            dockerfile: Dockerfile
+        environment:
+            API_ENV: production
+            URL_SERVICE_REPORT: ${URL_SERVICE_REPORT}
+            PORT_SERVICE_REPORT: ${PORT_SERVICE_REPORT}
+            URI_DATA_COMPANY: ${URI_DATA_COMPANY}
+            URI_DATA_COMPLAINS: ${URI_DATA_COMPLAINS}
+        env_file: ./.env
+        ports:
+            - "${PORT_SERVICE_REPORT}:${PORT_SERVICE_REPORT}"
+        volumes:
+            - ./service_report:/home/app
+    company_data:
+        image: mongo
+        restart: always
+        command: mongod --port 27027
+        volumes:
+            - ./db/company:/data/db
+        ports:
+            - "27027:27027"
+
+    complains_data:
+        image: mongo
+        restart: always
+        command: mongod --port 27017
+        volumes:
+            - ./db/complains:/data/db
+        ports:
+            - "27017:27017"
+
+    complains_cache:
+        image: "redis:alpine"
+        command: redis-server --requirepass 1234
+
+    company_cache:
+        image: "redis:alpine"
+        command: redis-server --requirepass 1234

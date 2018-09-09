@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+    report-service-test:
+        build:
+            context: ./service_report
+            dockerfile: Dockerfile-test
+        environment:
+            API_ENV: testing
+            URL_SERVICE_REPORT: ${URL_SERVICE_REPORT}
+            PORT_SERVICE_REPORT: ${PORT_SERVICE_REPORT}
+            URI_DATA_COMPANY: ${URI_DATA_COMPANY}
+            URI_DATA_COMPLAINS: ${URI_DATA_COMPLAINS}
+        env_file: ./.env
+        ports:
+            - "${PORT_SERVICE_REPORT}:${PORT_SERVICE_REPORT}"
+        volumes:
+            - ./service_report:/home/app
+        links:
+            - report-cache
+            - complains-data
+            - company-data
+
+    complains-data:
+        image: mongo
+        restart: always
+        command: mongod --port 27017
+        volumes:
+            - ./db/complains/test:/data/db
+        ports:
+            - "27017:27017"
+
+    company-data:
+        image: mongo
+        restart: always
+        command: mongod --port 27027
+        volumes:
+            - ./db/company/test:/data/db
+        ports:
+            - "27027:27027"

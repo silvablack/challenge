@@ -1,0 +1,165 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Complains API",
+		"_postman_id": "c97c0d5e-05e4-269a-501f-7ecd36bb30bd",
+		"description": "# Introduction\nThis API read and write complaint information\n\n# Overview\nArchiteture HTTP/RESTFul\n\t+ /GET\n\t+ /GET:id\n\t+ /POST\n\t+ /PUT:id\n\t+ /DELETE:id\n\n\n# Error Codes\nHttp status for RESTFul\n1. GET return status \n\t+ OK: 200\n\t+ BAD_REQUEST: 400\n2. GET:id return status\n\t+ OK: 200\n\t+ BAD_REQUEST: 400\n3. POST return status\n\t+ CREATED: 201\n\t+ UNPROCESSABLE_ENTITY: 422\n4. PUT return status\n\t+ CREATED: 201\n\t+ UNPROCESSABLE_ENTITY: 422\n5. DELETE return status\n\t+ NO-CONTENT: 204\n\t+ UNPROCESSABLE_ENTITY: 422",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Get all Complaints /complains",
+			"request": {
+				"url": "18.223.203.222:5000/complains",
+				"method": "GET",
+				"header": [],
+				"body": {}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Get Complaint /complains/:id",
+			"request": {
+				"url": "18.223.203.222:5000/complains/5b75c5d84c756c0117b31ecf",
+				"method": "GET",
+				"header": [],
+				"body": {}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Create new Complaint /complains",
+			"request": {
+				"url": "18.223.203.222:5000/complains",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "Cobrança Indevida",
+							"description": "required, String | minlength(10) | maxlength(50)",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Chegou uma conta em minha casa com o valor muito mais alto que o normal e que não condiz com a realidade.",
+							"description": "required, String | minlength(50) | maxlength(500)",
+							"type": "text"
+						},
+						{
+							"key": "locale.city",
+							"value": "São Luís",
+							"description": "required, String | minlength(4)",
+							"type": "text"
+						},
+						{
+							"key": "company_id",
+							"value": "5b74e44d6906800036631479",
+							"description": "required, String | Request in Company Service",
+							"type": "text"
+						},
+						{
+							"key": "date_created",
+							"value": "2018-08-20T21:33:22.394Z",
+							"description": "Date | default = now()",
+							"type": "text"
+						},
+						{
+							"key": "locale.state",
+							"value": "Pará",
+							"description": "required, String | minlength(4)",
+							"type": "text"
+						},
+						{
+							"key": "locale.uf",
+							"value": "PA",
+							"description": "required, String | minlength(2) | maxlength(2)",
+							"type": "text"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Update complaint /complains",
+			"request": {
+				"url": "18.223.203.222:5000/complains/5b8332d9d4cb6b001fe0ac46",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "Cobrança Indevida - Atualizada",
+							"description": "required, String | minlength(10) | maxlength(50)",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Chegou uma conta em minha casa com o valor muito mais alto que o normal e que não condiz com a realidade.",
+							"description": "required, String | minlength(50) | maxlength(500)",
+							"type": "text"
+						},
+						{
+							"key": "locale.city",
+							"value": "São Luís",
+							"description": "required, String | minlength(4)",
+							"type": "text"
+						},
+						{
+							"key": "locale.state",
+							"value": "Maranhão",
+							"description": "required, String | minlength(4)",
+							"type": "text"
+						},
+						{
+							"key": "locale.uf",
+							"value": "MA",
+							"description": "required, String | minlength(2) | maxlength(2)",
+							"type": "text"
+						},
+						{
+							"key": "company_id",
+							"value": "5b74e44d6906800036631479",
+							"description": "required, String | Request in Company Service",
+							"type": "text"
+						},
+						{
+							"key": "data_updated",
+							"value": "2018-08-20T21:33:22.394Z",
+							"description": "Date | default now()",
+							"type": "text"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Delete Complains",
+			"request": {
+				"url": "18.223.203.222:5000/complains/5b7b77739316df011b932842",
+				"method": "DELETE",
+				"header": [],
+				"body": {}
+			},
+			"response": []
+		}
+	]
+}

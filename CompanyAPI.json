@@ -1,0 +1,117 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Company API",
+		"_postman_id": "1799acf2-f719-1d58-9da4-6fb7e933c1e3",
+		"description": "# Introduction\nThis API read and write companies information\n\n# Overview\nArchiteture HTTP/RESTFul\n\t+ /GET\n\t+ /GET:id\n\t+ /POST\n\t+ /PUT:id\n\t+ /DELETE:id\n\n# Error Codes\nHttp status for RESTFul\n1. GET return status \n\t+ OK: 200\n\t+ BAD_REQUEST: 400\n2. GET:id return status\n\t+ OK: 200\n\t+ BAD_REQUEST: 400\n3. POST return status\n\t+ CREATED: 201\n\t+ UNPROCESSABLE_ENTITY: 422\n4. PUT return status\n\t+ CREATED: 201\n\t+ UNPROCESSABLE_ENTITY: 422\n5. DELETE return status\n\t+ NO-CONTENT: 204\n\t+ UNPROCESSABLE_ENTITY: 422",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Companies /company",
+			"request": {
+				"url": "18.223.203.222:5010/company",
+				"method": "GET",
+				"header": [],
+				"body": {}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Company /company/:id",
+			"request": {
+				"url": "18.223.203.222:5010/company/5b75c98eec606900389ece4c",
+				"method": "GET",
+				"header": [],
+				"body": {}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Create New Company /company",
+			"request": {
+				"url": "18.223.203.222:5010/company",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "CEMAR - Compania Elétrica",
+							"description": "required,String, minlength(10), maxlength(60)",
+							"type": "text"
+						},
+						{
+							"key": "mail",
+							"value": "cemar@cemar.com.br",
+							"description": "required,validator|email(Regx)",
+							"type": "text"
+						},
+						{
+							"key": "cnpj",
+							"value": "77265776000168",
+							"description": "required,String, minlength(14), maxlength(14)",
+							"type": "text"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Update Company /company/:id",
+			"request": {
+				"url": "18.223.203.222:5010/company/5b7b7135ff523c0021c74c62",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "CEMAR - Companhia Elétrica",
+							"description": "required,minlength(10), maxlength(60)",
+							"type": "text"
+						},
+						{
+							"key": "mail",
+							"value": "contato@cemar.com.br",
+							"description": "required,validate|email (Regx)",
+							"type": "text"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Delete Company /company/:id",
+			"request": {
+				"url": "18.223.203.222:5010/company/5b75c98eec606900389ece4c",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {}
+			},
+			"response": []
+		}
+	]
+}
