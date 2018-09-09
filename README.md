@@ -53,6 +53,24 @@ Each service contains Jenkinsfile with Pipeline to Deploy application and push t
    
 + ./Jenkinsfile
 
+### Environment ###
+
+
+        /bash cat .env
+
++ URL\_SERVICE_COMPLAINS
++ PORT\_SERVICE_COMPLAINS
++ URI\_DATA_COMPLAINS
++ URI\_CACHE_COMPLAINS
++ PASSWORD\_CACHE_COMPLAINS
++ URL\_SERVICE_COMPANY
++ PORT\_SERVICE_COMPANY
++ URI\_DATA_COMPANY
++ URI\_CACHE_COMPANY
++ PASSWORD\_CACHE_COMPANY
++ URL\_SERVICE_REPORT
++ PORT\_SERVICE_REPORT
+
 to compose each app
 
 + **./docker-compose.yml** to run all applications
