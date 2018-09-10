@@ -58,40 +58,47 @@ Each service contains Jenkinsfile with Pipeline to Deploy application and push t
 
         /bash cat .env
 
-+ URL\_SERVICE_COMPLAINS
-+ PORT\_SERVICE_COMPLAINS
-+ URI\_DATA_COMPLAINS
-+ URI\_CACHE_COMPLAINS
-+ PASSWORD\_CACHE_COMPLAINS
-+ URL\_SERVICE_COMPANY
-+ PORT\_SERVICE_COMPANY
-+ URI\_DATA_COMPANY
-+ URI\_CACHE_COMPANY
-+ PASSWORD\_CACHE_COMPANY
-+ URL\_SERVICE_REPORT
-+ PORT\_SERVICE_REPORT
++ URL\_SERVICE_COMPLAINS *(eg: 127.0.0.0)*
++ PORT\_SERVICE_COMPLAINS *(eg: 5000)*
++ URI\_DATA_COMPLAINS *(eg: USER:PASSWORD@cluster-shard-00-00-uzq97.mongodb.net:27017)*
++ URI\_CACHE_COMPLAINS *(eg: redis-16230.c16.us-east-1-3.ec2.cloud.redislabs.com:16230)*
++ PASSWORD\_CACHE_COMPLAINS *(eg: 1234)*
++ URL\_SERVICE_COMPANY *(eg: 127.0.0.0)*
++ PORT\_SERVICE_COMPANY *(eg: 5010)*
++ URI\_DATA_COMPANY *(eg: USER:PASSWORD@cluster-shard-00-00-uzq97.mongodb.net:27017)*
++ URI\_CACHE_COMPANY *(eg: redis-16230.c16.us-east-1-3.ec2.cloud.redislabs.com:16230)*
++ PASSWORD\_CACHE_COMPANY *(eg: 1234)*
++ URL\_SERVICE_REPORT *(eg: 127.0.0.1)*
++ PORT\_SERVICE_REPORT *(eg: 5020)*
 
-to compose each app
+### Setup ###
++ Clone:
 
-+ **./docker-compose.yml** to run all applications
-+ **./docker-compose.test.complains.yml** to test only complaints
-+ **./docker-compose.test.company.yml** to test only company
-+ **./docker-compose.test.report.yml** to test only report
+        git clone git@github.com:silvablack/challenge.git
 
-Build and run
++ Build and run
 
         docker-compose -f FILE build
         docker-compose -f FILE up
 
+to compose each app
 
-APIDOC in HTML
++ FILE **./docker-compose.yml** to run all applications
++ FILE **./docker-compose.test.complains.yml** to test only complaints
++ FILE **./docker-compose.test.company.yml** to test only company
++ FILE **./docker-compose.test.report.yml** to test only report
+
+
+API Documentation *HTML*
 
 + [Report API Documentation](https://documenter.getpostman.com/view/5097449/RWaGVA8g)
 + [Complains API Documentation](https://documenter.getpostman.com/view/5097449/RWToPHhM)
 + [Company API Documentation](https://documenter.getpostman.com/view/5097449/RWToPHhL)
 
-APIDOC in JSON file
+API Documentation *JSON*
 
-        ComplainsAPI.json
-        CompanyAPI.json
-        ReportAPI.json
++ ComplainsAPI.json
+
++ CompanyAPI.json
+
++ ReportAPI.json
